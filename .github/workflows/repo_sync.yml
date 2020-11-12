@@ -6,6 +6,8 @@ on:
   workflow_dispatch:
   watch:
     types: started
+  push:
+    branches: [ master ]
   repository_dispatch:
     types: 同步lxk0301jd_scripts
 jobs:
