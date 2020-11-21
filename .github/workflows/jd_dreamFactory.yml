@@ -6,7 +6,7 @@ name: jd_dreamFactory
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/50 * * * *' #每50分钟运行一次
+    - cron: '0/35 * * * *' #每50分钟运行一次
   watch:
     types: started
   repository_dispatch:
