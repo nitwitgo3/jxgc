@@ -6,7 +6,7 @@ name: shareCode-auto
 on:
   workflow_dispatch:
   schedule:
-    - cron: '12 2 * * ?' #action会有延迟
+    - cron: '2 18 * * ?' #action会有延迟
   watch:
     types: started
   repository_dispatch:
