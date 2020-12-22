@@ -6,7 +6,7 @@ name: qqread
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/11 * * * ?' #action会有延迟
+    - cron: '*/10 * * * ?' #action会有延迟
   watch:
     types: started
   repository_dispatch:
@@ -20,7 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: Jone2008/JD/backUp
+          repository: Jone2008/JD
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -37,7 +37,7 @@ jobs:
           npm install
       - name: '运行 【企鹅阅读】'
         run: |
-          node qqread.js
+          node backUp/qqread.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           WATCH_ACCEPTBODY: ${{ secrets.WATCH_ACCEPTBODY }}
