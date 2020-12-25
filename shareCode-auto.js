@@ -36,7 +36,7 @@ $.random = Math.floor(Math.random() * 60);
     jcj &&
       (await create(
         `https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/${jcj}/`,
-        "京东疯狗"
+        "京东carzy joy"
       ));
     await $.wait($.random);
     zd &&
