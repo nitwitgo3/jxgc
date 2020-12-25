@@ -36,7 +36,7 @@ $.random = Math.floor(Math.random() * 60);
     jcj &&
       (await create(
         `https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/${jcj}/`,
-        "京东crazy joy"
+        "京东疯狗"
       ));
     await $.wait($.random);
     zd &&
@@ -89,7 +89,9 @@ function create(path, name) {
         const { message } = JSON.parse(data);
         const { msg } = JSON.parse(data);
         $.log(`\n${message}\n${data}`);
+        $.log(`\n${msg}\n${data}`);
         $.result.push(`${name}： ${message}`);
+        $.result.push(`${name}： ${msg}`);
       } catch (e) {
         $.logErr(e, resp);
       } finally {
