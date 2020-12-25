@@ -7,7 +7,7 @@ const shareCodes = [
     ddgc: $.getdata("dd_shareCode1") || "P04z54XCjVWnYaS5jYNDWX72HlXltIRy4Jot-E",
     jxgc: $.getdata("jx_shareCode1") || "wuvqpko2F3tj8Yvrdbft0A==",
     jdzz: $.getdata("jd_shareCode1") || "Svfh2RR0c8EnUJR3znfQJdA",
-    jcy: $.getdata("jc_shareCode1") || "f14yCI8QvHeosK7_3kWvOat9zd5YaBeE",
+    jcj: $.getdata("jc_shareCode1") || "f14yCI8QvHeosK7_3kWvOat9zd5YaBeE",
   },
   {
     zd: $.getdata("zd_shareCode2") || "4npkonnsy7xi3pzaezezc7plx2o32nlk4ih2jna",
@@ -16,7 +16,7 @@ const shareCodes = [
     ddgc: $.getdata("dd_shareCode2") || "P04z54XCjVWnYaS5m9cZ2f5231LknLSN7iRCqE",
     jxgc: $.getdata("jx_shareCode2") || "UdXIG7xaeRenKkCRnXA4bA==",
     jdzz: $.getdata("jd_shareCode2") || "S5KkcRx8f9FXQJRiikP9YJg",
-    jcy: $.getdata("jc_shareCode2") || "zCx4mMEE_YXS3Bv8bX2reqt9zd5YaBeE",
+    jcj: $.getdata("jc_shareCode2") || "zCx4mMEE_YXS3Bv8bX2reqt9zd5YaBeE",
   },
 ];
 $.result = [];
@@ -87,6 +87,7 @@ function create(path, name) {
         const needAgain = await checkWhetherNeedAgain(resp, create, path, name);
         if (needAgain) return;
         const { message } = JSON.parse(data);
+        const { msg } = JSON.parse(data);
         $.log(`\n${message}\n${data}`);
         $.result.push(`${name}： ${message}`);
       } catch (e) {
