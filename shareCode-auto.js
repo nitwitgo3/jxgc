@@ -89,8 +89,8 @@ function create(path, name) {
         const { message } = JSON.parse(data);
         $.log(`\n${message}\n${data}`);
         $.result.push(`${name}： ${message}`);
-       } 
-         {
+      } 
+          {
         const needAgain = await checkWhetherNeedAgain(resp, create, path, name);
         if (needAgain) return;
         const { msg } = JSON.parse(data);
