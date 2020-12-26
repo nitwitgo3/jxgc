@@ -6,7 +6,7 @@ name: jd_crazy_joy
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 4/16 * * *' # 运行两次补漏
+    - cron: '30 16 * * *' # 运行补漏
   watch:
     types: started
   repository_dispatch:
