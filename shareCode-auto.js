@@ -25,7 +25,7 @@ $.random = Math.floor(Math.random() * 60);
 !(async () => {
   console.log(`\n此脚本延迟${$.random}秒执行\n`);
   for (let i = 0; i < shareCodes.length; i++) {
-    const { jdzz,jcj,zd, nc, mc, ddgc, jxgc } = shareCodes[i];
+    const { jdzz,jcj,zd,nc,mc,ddgc,jxgc } = shareCodes[i];
     await $.wait($.random);
     jdzz &&
       (await create(
