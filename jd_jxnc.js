@@ -56,6 +56,8 @@ $.answer = 0;
 $.drip = 0;
 $.maxHelpNum = $.isNode() ? 8 : 3; // 助力 ret 1011 错误最大计数
 $.helpNum = 0; // 当前账号 助力 ret 1011 次数
+$.maxHelpSelfNum = 3; // 助力 自身 ret 1021 cannot help self 最大次数限制（防止随机API不停返回自身 code 导致死循环）
+$.helpSelfNum = 0; // 当前账号 助力 ret 1021 cannot help self 次数
 let assistUserShareCode = 0; // 随机助力用户 share code
 
 !(async () => {
@@ -86,6 +88,7 @@ let assistUserShareCode = 0; // 随机助力用户 share code
             message = '';
             option = {};
             $.helpNum = 0;
+            $.helpSelfNum = 0;
             await tokenFormat(); // 处理当前账号 token
             await shareCodesFormat(); // 处理当前账号 助力码
             await jdJXNC(); // 执行当前账号 主代码流程
@@ -208,10 +211,7 @@ function shareCodesFormat() {
         // console.log(`第${$.index}个京东账号的助力码:::${jdFruitShareArr[$.index - 1]}`)
         if (jxncShareCodeArr[$.index - 1]) {
             currentShareCode = jxncShareCodeArr[$.index - 1].split('@');
-            let length = currentShareCode.length;
-            if (length < 3) {
-                currentShareCode.push(...(shareCode.split('@').splice(0, 3 - length)));
-            }
+            currentShareCode.push(...(shareCode.split('@')));
         } else {
             $.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码`)
             currentShareCode = shareCode.split('@');
@@ -239,10 +239,10 @@ async function jdJXNC() {
             await $.wait(500);
             const endInfo = await getTaskList();
             getMessage(endInfo, startInfo);
+            await submitInviteId($.UserName);
+            await $.wait(500);
             let next = await helpFriends();
             if (next) {
-                await submitInviteId($.UserName);
-                await $.wait(500);
                 while (true) {
                     assistUserShareCode = await getAssistUser();
                     if (assistUserShareCode) {
@@ -456,6 +456,7 @@ function helpShareCode(code) {
             $.log('助力码与当前账号相同，跳过助力。准备进行下一个助力');
             resolve(true);
         }
+        $.log(`即将助力 share code：${code}`);
         $.get(
             taskUrl('help', `active=${$.info.active}&joinnum=${$.info.joinnum}&smp=${code}`),
             async (err, resp, data) => {
@@ -463,8 +464,14 @@ function helpShareCode(code) {
                     const res = data.match(/try\{whyour\(([\s\S]*)\)\;\}catch\(e\)\{\}/)[1];
                     const {ret, retmsg = ''} = JSON.parse(res);
                     $.log(`助力结果：ret=${ret} retmsg="${retmsg ? retmsg : 'OK'}"`);
-                    if (ret === 0 || ret === 1021) { // 0 助力成功 1021 不能助力自己
+                    if (ret === 0) { // 0 助力成功
                         resolve(true);
+                    }
+                    if (ret === 1021) { // 1021 cannot help self 不能助力自己
+                        $.helpSelfNum++;
+                        if ($.helpSelfNum <= $.maxHelpSelfNum) {
+                            resolve(true);
+                        }
                     }
                     if (ret === 1011) { // 1011 active 不同
                         $.helpNum++;
