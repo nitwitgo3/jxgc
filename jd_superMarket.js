@@ -26,7 +26,7 @@ const $ = new Env('东东超市');
 let cookiesArr = [], cookie = '', jdSuperMarketShareArr = [], notify, newShareCodes;
 
 let jdNotify = true;//用来是否关闭弹窗通知，true表示关闭，false表示开启。
-let superMarketUpgrade = false;//自动升级,顺序:解锁升级商品、升级货架,true表示自动升级,false表示关闭自动升级
+let superMarketUpgrade = true;//自动升级,顺序:解锁升级商品、升级货架,true表示自动升级,false表示关闭自动升级
 let businessCircleJump = true;//小于对方300热力值自动更换商圈队伍,true表示运行,false表示禁止
 let drawLotteryFlag = false;//是否用500蓝币去抽奖，true表示开启，false表示关闭。默认关闭
 let message = '', subTitle;
@@ -314,7 +314,7 @@ async function businessCircleActivity() {
       console.log(`\n注：PK会在每天的七点自动随机加入lxk0301创建的队伍\n`)
       await updatePkActivityId();
       if (!$.updatePkActivityIdRes) await updatePkActivityIdCDN('https://gitee.com/lxk0301/updateTeam/raw/master/jd_updateTeam.json');
-      if (!$.updatePkActivityIdRes) await updatePkActivityIdCDN('https://cdn.jsdelivr.net/gh/lxk0301/updateTeam@master/jd_updateTeam.json');
+      if (!$.updatePkActivityIdRes) await updatePkActivityIdCDN('https://cdn.jsdelivr.net/gh/LXK9301/updateTeam@master/jd_updateTeam.json');
       console.log(`\nupdatePkActivityId[pkActivityId]:::${$.updatePkActivityIdRes.pkActivityId}`);
       console.log(`\n京东服务器返回的[pkActivityId] ${pkActivityId}`);
       if ($.updatePkActivityIdRes && ($.updatePkActivityIdRes.pkActivityId === pkActivityId)) {
@@ -844,10 +844,8 @@ function smtg_sellMerchandise(body) {
   })
 }
 //新版东东超市
-function updatePkActivityId(url = 'https://raw.githubusercontent.com/lxk0301/updateTeam/master/jd_updateTeam.json') {
+function updatePkActivityId(url = 'https://raw.githubusercontent.com/LXK9301/updateTeam/master/jd_updateTeam.json') {
   return new Promise(resolve => {
-    //https://cdn.jsdelivr.net/gh/lxk0301/updateTeam@master/jd_updateTeam.json
-    //https://raw.githubusercontent.com/lxk0301/updateTeam/master/jd_updateTeam.json
     $.get({url}, async (err, resp, data) => {
       try {
         if (err) {
@@ -864,10 +862,8 @@ function updatePkActivityId(url = 'https://raw.githubusercontent.com/lxk0301/upd
     })
   })
 }
-function updatePkActivityIdCDN(url = 'https://raw.fastgit.org/lxk0301/updateTeam/master/jd_updateTeam.json') {
+function updatePkActivityIdCDN(url) {
   return new Promise(async resolve => {
-    //https://cdn.jsdelivr.net/gh/lxk0301/updateTeam@master/jd_updateTeam.json
-    //https://raw.githubusercontent.com/lxk0301/updateTeam/master/jd_updateTeam.json
     const headers = {
       "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
     }
