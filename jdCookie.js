@@ -2,7 +2,6 @@
 此文件为Node.js专用。其他用户请忽略
  */
 //此处填写京东账号cookie。
-//注：github action用户cookie填写到Settings-Secrets里面，新增JD_COOKIE，多个账号的cookie使用`&`隔开或者换行
 let CookieJDs = [
   // 'pt_key=AAJf984RAECzwZKMzVn8dGcIDS6qKirEYEkIrm4K_HChABQulnJ9CK6sPz1NOflOF4S4TOtntgLpLBd8dTo0c-UplwRNNJtQ;pt_pin=%E8%A2%AB%E6%8A%98%E5%8F%A0%E7%9A%84%E8%AE%B0%E5%BF%8633;',//账号一ck,例:pt_key=XXX;pt_pin=XXX;
   // 'pt_key=AAJf98v-ADD8aNomR4VVWb3lJOyf--E8ih-TDF-RTUBSfzc2TFd6lb0arnuhJhkT-74y5NQkLcA;pt_pin=jd_6cd93e613b0e5;',//账号二ck,例:pt_key=XXX;pt_pin=XXX;如有更多,依次类推
@@ -16,7 +15,7 @@ let CookieJDs = [
   //   `pt_key=AAJf5zunADBzbaV7S0F-DFyRFCyHYlKw4IH3lLIe6I4VJE9wZobxD9erVzaRmaSEJnZQZrRFnKc;pt_pin=jd_5b54a8d20c8ba;`,
   //   `pt_key=AAJf4yjNADCyJmWZW9Z_tCkKfE0OjISu9WTOFSuyHzNAhGqS3QqR8kEBZY9XNGXg6o_K3axMVqw;pt_pin=ojdo9527;`
 ]
-// 判断github action里面是否有京东ck
+// 判断环境变量里面是否有京东ck
 if (process.env.JD_COOKIE) {
   if (process.env.JD_COOKIE.indexOf('&') > -1) {
     console.log(`您的cookie选择的是用&隔开\n`)
@@ -27,6 +26,13 @@ if (process.env.JD_COOKIE) {
   } else {
     CookieJDs = [process.env.JD_COOKIE];
   }
+}
+if (JSON.stringify(process.env).indexOf('GITHUB')>-1) {
+  console.log(`请勿使用github action运行此脚本,无论你是从你自己的私库还是其他哪里拉取的源代码，都会导致我被封号\n`);
+  !(async () => {
+    await require('./sendNotify').sendNotify('提醒', `请勿使用github action、滥用github资源会封我仓库以及账号`)
+    await process.exit(0);
+  })()
 }
 CookieJDs = [...new Set(CookieJDs.filter(item => item !== "" && item !== null && item !== undefined))]
 console.log(`\n====================共有${CookieJDs.length}个京东账号Cookie=========\n`);
