@@ -35,7 +35,7 @@ jobs:
         uses: Yikun/hub-mirror-action@master
         if: env.dst_key
         with:
-          src: github/jone2008
+          src: github/Jone2008
           dst: gitee/jone2008
           static_list: "JD"
           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
