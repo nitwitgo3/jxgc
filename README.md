@@ -1,4 +1,5 @@
-## 请勿使用github action、滥用github资源会封我仓库以及账号
+# 本人小白，仅限自学用于研究学习代码，请别fork
+
 
 ## 特别声明: 
 
@@ -115,6 +116,7 @@
 
 ### 赞赏码(开发维护不易,请赏杯茶水费)
 <div align=center><img width="250" height="250" src="./icon/thanks.jpg"/></div>
+
 
 ### 特别感谢(排名不分先后)：
 * [@NobyDa](https://github.com/NobyDa)
