@@ -1,15 +1,15 @@
 # File: .github/workflows/repo-sync.yml
-name: sync-LXK9301-scripts
+name: 同步LXK大佬仓库
 on:
   schedule:
-    - cron: '1 0,15 * * *'
+    - cron: '*/30 * * * *'
   workflow_dispatch:
   watch:
     types: started
   push:
     branches: [ master ]
   repository_dispatch:
-    types: sync-LXK9301-scripts
+    types: 同步LXK大佬仓库
 jobs:
   repo-sync:
     env:
@@ -35,8 +35,8 @@ jobs:
         uses: Yikun/hub-mirror-action@master
         if: env.dst_key
         with:
-          src: github/LXK9301
-          dst: gitee/lxk0301
-          static_list: "jd_scripts"
+          src: github/Jone2008
+          dst: gitee/jone2008
+          static_list: "JD"
           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
