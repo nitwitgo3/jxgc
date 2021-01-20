@@ -1,4 +1,5 @@
-## 请勿使用github action、滥用github资源会封我仓库以及账号，[详见](https://github.com/LXK9301/jd_scripts/issues/3)
+# 本人小白，仅限自学用于研究学习代码，拒绝使用AC跑JD脚本，从我做起,推荐使用云函数
+
 
 ## 特别声明: 
 
@@ -132,6 +133,7 @@
 <div align=center><img width="250" height="250" src="./icon/thanks.jpg"/></div>
 
 ## 特别感谢(排名不分先后)：
+
 
 * [@NobyDa](https://github.com/NobyDa)
 
