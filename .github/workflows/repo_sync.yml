@@ -1,5 +1,5 @@
 # File: .github/workflows/repo-sync.yml
-name: 同步LXK大佬仓库
+name: A同步LXK大佬仓库
 on:
   schedule:
     - cron: '*/30 * * * *'
@@ -22,7 +22,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: 同步sync LXK9301-scripts
+      - name: sync LXK9301-scripts
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
