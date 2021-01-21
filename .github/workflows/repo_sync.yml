@@ -1,5 +1,5 @@
 # File: .github/workflows/repo-sync.yml
-name: A同步LXK大佬仓库
+name: 同步LXK大佬仓库
 on:
   schedule:
     - cron: '*/30 * * * *'
