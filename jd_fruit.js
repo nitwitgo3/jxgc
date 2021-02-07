@@ -28,11 +28,8 @@ let cookiesArr = [], cookie = '', jdFruitShareArr = [], isBox = false, notify, n
 //助力好友分享码(最多4个,否则后面的助力失败),原因:京东农场每人每天只有四次助力机会
 //此此内容是IOS用户下载脚本到本地使用，填写互助码的地方，同一京东账号的好友互助码请使用@符号隔开。
 //下面给出两个账号的填写示例（iOS只支持2个京东账号）
-let shareCodes = [ // 这个列表填入你要助力的好友的shareCode
-   //账号一的好友shareCode,不同好友的shareCode中间用@符号隔开
-  '0a74407df5df4fa99672a037eec61f7e@dbb21614667246fabcfd9685b6f448f3@6fbd26cc27ac44d6a7fed34092453f77@61ff5c624949454aa88561f2cd721bf6@56db8e7bc5874668ba7d5195230d067a@b9d287c974cc498d94112f1b064cf934@23b49f5a106b4d61b2ea505d5a4e1056',
-  //账号二的好友shareCode,不同好友的shareCode中间用@符号隔开
-  'b1638a774d054a05a30a17d3b4d364b8@f92cb56c6a1349f5a35f0372aa041ea0@9c52670d52ad4e1a812f894563c746ea@8175509d82504e96828afc8b1bbb9cb3@2673c3777d4443829b2a635059953a28@d2d5d435675544679413cb9145577e0f',
+let shareCodes = [
+  'b69bc017d68e4eb78bede874f304e4f2@7a6f112165324935b829b82bb656fc3a@33d9c32e5822466d9a3f1b03b870f62d@871184fb53bf4a28a08465e228c846f9@85a877de56a64e599bbc3c7731f29aa2@5c07b7f165504beeab70431545a36b97@7fa9ad9ad52b4089ae35fc7c3f53928e@fa8581a3c1ab49cf80ce9dec57bd2317'
 ]
 let message = '', subTitle = '', option = {}, isFruitFinished = false;
 const retainWater = 100;//保留水滴大于多少g,默认100g;

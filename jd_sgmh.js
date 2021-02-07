@@ -29,8 +29,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let appId = '1EFRRxA' , homeDataFunPrefix = 'interact_template', collectScoreFunPrefix = 'harmony', message = ''
 let lotteryResultFunPrefix = homeDataFunPrefix, browseTime = 6
 const inviteCodes = [
-  'T019-aknAFRllhyoQlyI46gCjVWmIaW5kRrbA@T027Zm_olqSxIOtH97BATGmKoWraLawCjVWmIaW5kRrbA',
-  'T019-aknAFRllhyoQlyI46gCjVWmIaW5kRrbA@T0225KkcRk1N_FeCJhv3xvdfcQCjVWmIaW5kRrbA'
+  'T0225KkcRRoapFDfJ0jwnKJefQCjVWmIaW5kRrbA@T0225KkcR0gf81fQJkyllaVfJgCjVWmIaW5kRrbA@T0205KkcH0tEnTGWdFms1KlSCjVWmIaW5kRrbA@T0189KUiH11coQWJIhr1kgCjVWmIaW5kRrbA@T0205KkcM1pYijKRdkG-0Z1sCjVWmIaW5kRrbA@T008Z0_gmbuWCjVWmIaW5kRrbA'
 ];
 const randomCount = $.isNode() ? 20 : 5;
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -306,7 +305,7 @@ function shareCodesFormat() {
       const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
       $.newShareCodes = inviteCodes[tempIndex].split('@');
     }
-    const readShareCodeRes = await readShareCode();
+    const readShareCodeRes = []//await readShareCode();
     // console.log(readShareCodeRes)
     if (readShareCodeRes && readShareCodeRes.code === 200) {
       $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
